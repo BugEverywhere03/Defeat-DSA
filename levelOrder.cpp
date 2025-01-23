@@ -31,14 +31,8 @@ vector<vector<int>> levelOrder(TreeNode *root)
 }
 
 // Solution using Recursion
-vector<vector<int>> levelOrderRecursion(TreeNode *root)
-{
-    vector<vector<int>> result;
-    helpLevelOrder(root, result, 0);
-    return result;
-}
 
-void helpLevelOrder(TreenNode *root, vector<vector<int>> &result, int level)
+void helpLevelOrder(TreeNode *root, vector<vector<int>> &result, int level)
 {
     if (root == NULL)
         return;
@@ -49,6 +43,13 @@ void helpLevelOrder(TreenNode *root, vector<vector<int>> &result, int level)
     result[level].push_back(root->val);
     helpLevelOrder(root->left, result, level + 1);
     helpLevelOrder(root->right, result, level + 1);
+}
+
+vector<vector<int>> levelOrderRecursion(TreeNode *root)
+{
+    vector<vector<int>> result;
+    helpLevelOrder(root, result, 0);
+    return result;
 }
 
 int main()
