@@ -2,6 +2,31 @@
 #include <vector>
 using namespace std;
 
+// Dutch National Flag algorithm
+// Ý tưởng phân vúng 3
+void sortColorsTwo(vector<int> &nums)
+{
+    int low = 0, mid = 0, high = nums.size() - 1;
+    while (mid < high)
+    {
+        if (nums[mid] == 0)
+        {
+            swap(nums[mid], nums[low]);
+            mid++;
+            low++;
+        }
+        if (nums[mid] == 1)
+        {
+            mid++;
+        }
+        if (nums[mid] == 2)
+        {
+            swap(nums[mid], nums[high]);
+            high--;
+        }
+    }
+}
+
 void sortColors(vector<int> &nums)
 {
     int redCount = 0;
@@ -43,7 +68,7 @@ void sortColors(vector<int> &nums)
 int main()
 {
     vector<int> nums = {0, 1, 2, 1, 2, 0};
-    sortColors(nums);
+    sortColorsTwo(nums);
     for (int num : nums)
     {
         cout << num << " ";
