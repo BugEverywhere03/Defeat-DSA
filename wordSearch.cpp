@@ -4,59 +4,43 @@
 #include <utility>
 #include <unordered_map>
 using namespace std;
-vector<pair<int, int>> getsequence(vector<vector<string>> &board, int m, int n)
-{
-    vector<pair<int, int>> result;
-    int col = board.size();
-    int row = board[0].size();
-    for (int i = 0; i < col; i++)
-    {
-        for (int j = 0; j < row; j++)
-        {
-            pair<int, int> position = {i, j};
-            if (i > 0 && j > 0 && i < col && j < row)
-            {
-                if (m - 1 == i && j == n - 1)
-                {
 
-                    result.push_back(position);
-                }
-                if (m + 1 == i && j == n + 1)
-                {
-                    result.push_back(position);
-                }
-                if (m == i && (n - 1 == j || n + 1 == j))
-                {
-                    result.push_back(position);
-                }
-            }
-        }
-    }
-    return result;
-}
-
-void backtrackSearh(unordered_map<string, pair<int, int>> found, vector<vector<string>> &board, string word, int index, int m, int n)
+bool backtrackSearh(vector<vector<char>> &board, string word, int index, int m, int n)
 {
     if (index == word.size())
     {
-        return;
+        return true;
     }
-    vector<pair<int, int>> sequences = getsequence(board, m, n);
-    for (int i = 0; i < sequences.size(); i++)
-    {
-        pair<int, int> curPair = sequences[i];
-        if (board[curPair.first][curPair.second][0] == word[index])
-        {
-        }
-    }
+    if (m < 0 || m >= board.size() || n < 0 || n >= board[0].size() || board[m][n] != word[index])
+        return false;
+    char temp = board[m][n];
+    board[m][n] = '*';
+    bool isExists = backtrackSearh(board, word, index + 1, m + 1, n) || backtrackSearh(board, word, index + 1, m - 1, n) || backtrackSearh(board, word, index + 1, m, n + 1) || backtrackSearh(board, word, index + 1, m, n - 1);
+    board[m][n] = temp;
+    return isExists;
 }
 
-bool exist(vector<vector<string>> board, string word)
+bool exist(vector<vector<char>> &board, string word)
 {
-    return true;
+    for (int i = 0; i < board.size(); ++i)
+    {
+        for (int j = 0; j < board[0].size(); ++j)
+        {
+
+            if (backtrackSearh(board, word, 0, i, j))
+                return true;
+        }
+    }
+    return false;
 }
 
 int main()
 {
+    vector<vector<char>> board = {
+        {'A', 'B', 'C', 'E'},
+        {'S', 'F', 'C', 'S'},
+        {'A', 'D', 'E', 'E'}};
+    string word = "ABCCED";
+    cout << exist(board, word) << endl;
     return 0;
 }
