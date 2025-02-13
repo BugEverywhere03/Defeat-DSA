@@ -3,7 +3,7 @@
 #include <vector>
 #include "ListNode.cpp"
 
-ListNode *sortList(ListNode *&head)
+ListNode *sortList(ListNode *head)
 {
     vector<int> arrayNode;
     ListNode *curr = head;
@@ -21,18 +21,24 @@ ListNode *sortList(ListNode *&head)
         curr = curr->next;
         i++;
     }
+    return head;
 }
 
 int main()
 {
     ListNode *head = nullptr;
     createList(head);
+    ListNode *temp = head;
+    while (temp)
+    {
+        cout << temp->val << endl;
+        temp = temp->next;
+    }
     head = sortList(head);
     while (head)
     {
         cout << head->val << endl;
         head = head->next;
-
     }
     return 0;
 }
