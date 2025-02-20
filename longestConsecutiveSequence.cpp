@@ -16,7 +16,7 @@ int longestConsequence(vector<int> &nums)
         if (nums[i] + 1 == nums[i + 1])
         {
             currLength++;
-                }
+        }
         else
         {
             longestLength = max(longestLength, currLength);
@@ -26,10 +26,37 @@ int longestConsequence(vector<int> &nums)
     }
     return longestLength;
 }
+// Using Map
+int longestConsequenceTwo(vector<int> &nums)
+{
+    if (nums.empty())
+        return 0;
+    int longestLength = 0;
+    unordered_set<int> sequence;
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        sequence.insert(i);
+    }
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        if (sequence.count(nums[i] - 1) == 0)
+        {
+            int j = 0;
+            int count = 1;
+            while (sequence.find(nums[i] + j) != sequence.end())
+            {
+                ++j;
+                count++;
+            }
+            longestLength = max(longestLength, count);
+        }
+    }
+    return longestLength;
+}
 
 int main()
 {
-    vector<int> nums = {1, 2, 3, 5, 6, 4}; // Output = 4
-    cout << longestConsequence(nums) << endl;
+    vector<int> nums = {1, 2, 3, 5, 6}; // Output = 4
+    cout << longestConsequenceTwo(nums) << endl;
     return 0;
 }
