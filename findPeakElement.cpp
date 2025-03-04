@@ -68,52 +68,19 @@ int indexOfPeakElement(vector<int> &nums)
     while (left <= right)
     {
         int mid = (left + right) / 2;
-        if (mid != 0 && mid != nums.size() - 1)
+        if (mid < nums.size() && nums[mid] < nums[mid + 1])
+            left = mid + 1;
+        else
         {
-            if (nums[mid - 1] < nums[mid] && nums[mid + 1] < nums[mid])
+            if (mid > 0 && nums[mid] < nums[mid - 1])
+                right = mid - 1;
+            else
             {
                 return mid;
             }
-            else
-            {
-                if (nums[mid - 1] > nums[mid] && nums[mid + 1] > nums[mid])
-                {
-                    if (nums[mid - 1] > nums[mid + 1])
-                        right = mid;
-                    else
-                        left = mid;
-                }
-                else
-                {
-                    if (nums[mid] < nums[mid - 1])
-                        right = mid;
-                    if (nums[mid] < nums[mid + 1])
-                        left = mid;
-                }
-            }
-        }
-        else
-        {
-            if (mid == 0)
-            {
-                if (nums[mid] > nums[mid + 1])
-                    return mid;
-                else
-                {
-                    left = left + 1;
-                }
-            }
-            if (mid == nums.size() - 1)
-            {
-                if (nums[mid] > nums[mid - 1])
-                    return mid;
-                else
-                {
-                    right = right + 1;
-                }
-            }
         }
     }
+    return left;
 }
 int main()
 {
