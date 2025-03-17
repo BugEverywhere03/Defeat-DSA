@@ -38,13 +38,14 @@ using namespace std;
 vector<vector<int>> merge(vector<vector<int>> &intervals)
 {
     vector<vector<int>> result;
+    sort(intervals.begin(), intervals.end());
     int start = intervals[0][0];
     int end = intervals[0][1];
     for (int i = 1; i < intervals.size(); ++i)
     {
         if (end >= intervals[i][0] || intervals[i][0] <= end)
         {
-            end = intervals[i][1];
+            end = max(intervals[i][1], end);
         }
         else
         {
@@ -60,7 +61,7 @@ vector<vector<int>> merge(vector<vector<int>> &intervals)
 
 int main()
 {
-    vector<vector<int>> intervals = {{1, 3}, {2, 6}, {8, 12}};
+    vector<vector<int>> intervals = {{1, 3}, {0, 6}, {8, 12}};
     vector<vector<int>> result = merge(intervals);
     for (vector<int> v : result)
     {
