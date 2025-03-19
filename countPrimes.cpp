@@ -29,6 +29,8 @@ using namespace std;
 //     }
 //     return countPrimes;
 // }
+
+//  Time complexity O(n*loglogn)
 int countPrimes(int n)
 {
     if (n <= 1)
