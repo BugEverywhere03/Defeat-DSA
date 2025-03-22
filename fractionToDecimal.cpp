@@ -31,6 +31,7 @@ string fractionToDecimal(int numerator, int denominator)
             zeroIndex = i;
             break;
         }
+        ++i;
     }
     if (zeroIndex != subString.length() - 1)
         return tempString.substr(0, dotIndex) + subString.substr(0, zeroIndex);
