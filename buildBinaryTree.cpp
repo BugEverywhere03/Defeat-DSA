@@ -32,13 +32,18 @@ using namespace std;
 // }
 TreeNode *build(vector<int> &preorder, vector<int> &inorder, unordered_map<int, int> mapIndex, int &currIndex, int start, int end)
 {
+    // Nếu vị trí trí bắt đầu lớn hơn vị trí kết thúc thì trả về null
     if (start > end)
         return nullptr;
+    // Kiểm tra còn nút gốc để tạo cây con không
     if (currIndex == preorder.size())
         return nullptr;
+    // Lấy giá trị nút gốc
     int val = preorder[++currIndex];
+    // Vị trí nút gốc trong mảng trung thứ tự
     int valIndex = mapIndex[val];
     TreeNode *root = new TreeNode(val);
+    // Trả về  cây vì không còn node tiếp theo để tọa nhánh
     if (start == end)
         return root;
     root->left = build(preorder, inorder, mapIndex, currIndex, start, valIndex - 1);
@@ -48,6 +53,7 @@ TreeNode *build(vector<int> &preorder, vector<int> &inorder, unordered_map<int, 
 // Using Queue and Recursion
 TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder)
 {
+    // Tạo map để lưu trữ vị trí các node gốc theo mảng tiền thứ tự
     unordered_map<int, int> mapIndex;
     for (int i = 0; i < inorder.size(); ++i)
     {
