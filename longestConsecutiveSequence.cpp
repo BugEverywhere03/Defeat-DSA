@@ -8,6 +8,8 @@ using namespace std;
 // Using quick sort algorithm
 int longestConsequence(vector<int> &nums)
 {
+    if (nums.size() == 0)
+        return 0;
     sort(nums.begin(), nums.end());
     int longestLength = 1;
     int currLength = 1;
@@ -19,6 +21,10 @@ int longestConsequence(vector<int> &nums)
         }
         else
         {
+            if (nums[i] == nums[i + 1])
+            {
+                continue;
+            }
             longestLength = max(longestLength, currLength);
             currLength = 1;
         }
@@ -56,7 +62,8 @@ int longestConsequenceTwo(vector<int> &nums)
 
 int main()
 {
-    vector<int> nums = {1, 2, 3, 5, 6}; // Output = 4
-    cout << longestConsequenceTwo(nums) << endl;
+    // vector<int> nums = {1, 2, 3, 5, 6}; // Output = 3
+    vector<int> nums = {1, 0, 0, 2, 3, 4}; // Output = 5
+    cout << longestConsequence(nums) << endl;
     return 0;
 }
