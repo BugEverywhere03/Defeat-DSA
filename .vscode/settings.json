@@ -1,12 +1,14 @@
 {
-    "files.associations": {
-        "*.cpp": "cpp",
-        "chrono": "cpp",
-        "ranges": "cpp",
-        "variant": "cpp",
-        "bitset": "cpp",
-        "algorithm": "cpp",
-        "format": "cpp",
-        "cstddef": "cpp"
-    }
+  "files.associations": {
+    "*.cpp": "cpp",
+    "*.js": "javascript",
+    "chrono": "cpp",
+    "ranges": "cpp",
+    "variant": "cpp",
+    "bitset": "cpp",
+    "algorithm": "cpp",
+    "format": "cpp",
+    "cstddef": "cpp",
+    "iostream": "cpp"
+  }
 }

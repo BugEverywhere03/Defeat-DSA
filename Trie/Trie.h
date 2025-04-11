@@ -1,4 +1,6 @@
 #include <string>
+#include <iostream>
+using namespace std;
 
 class TrieNode
 {
@@ -21,8 +23,10 @@ public:
 
 class Trie
 {
-public:
+private:
     TrieNode *root;
+
+public:
     Trie()
     {
         root = new TrieNode();
@@ -32,12 +36,13 @@ public:
         TrieNode *temp = root;
         for (int i = 0; i < word.size(); ++i)
         {
+            // Kiểm tra xem ký tự này năm ở vị trí nào
             int indexWord = word[i] - 'a';
             if (!temp->children[indexWord])
             {
                 temp->children[indexWord] = new TrieNode();
             }
-            temp = temp->children[i];
+            temp = temp->children[indexWord];
         }
         temp->word = true;
     }

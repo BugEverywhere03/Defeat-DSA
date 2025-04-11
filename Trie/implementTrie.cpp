@@ -16,17 +16,17 @@ void testTrie(vector<string> &actions, vector<string> &value)
         switch (key)
         {
         case 1:
-            trie.root = new TrieNode();
+            trie = Trie();
             break;
         case 2:
             trie.insert(value[i]);
             cout << "Insert " << value[i] << endl;
             break;
         case 3:
-            cout << "Search " << value[i] << trie.search(value[i]) << endl;
+            cout << "Search " << value[i] << " " << trie.search(value[i]) << endl;
             break;
         case 4:
-            cout << "StarsWith " << value[i] << trie.startsWith(value[i]) << endl;
+            cout << "StarsWith " << value[i] << " " << trie.startsWith(value[i]) << endl;
             break;
         default:
             break;
